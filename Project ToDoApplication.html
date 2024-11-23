@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Appliaction</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, #96a714, #65bdfb);
+            margin-top: 150px;
+        }
+        .heading{
+            color: black;
+        }
+        .container{
+            text-align: center;
+        }
+        #inputValue{
+            border-color: black;
+            border-radius: 5px;
+            padding: 7px;
+            width: 250px;
+        }
+        .btn{
+            background-color: yellow;
+            border-radius: 20px;
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .deleteBtn{
+            background-color: yellow;
+            border-radius: 20px;
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .main_todo_div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px auto; /* Center the div */
+            width: 300px; /* Adjust width as needed */
+        }
+
+        .main_todo_div .list {
+            margin-right: 10px;
+            list-style: none;
+            word-break: break-word; 
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <container class="container">
+        <h1 class="heading">Todo List</h1>
+    <br/>
+
+    <from>
+        <div>
+            <input type="text" id="inputValue" />
+            <button class="btn">Add Todo</button>
+        </div>
+        <section class="todo-lists-elem">
+
+        </section>
+    </from>
+    </container>
+    <script>
+        const mainTodoElem = document.querySelector('.todo-lists-elem');
+        const inputValue = document.getElementById('inputValue');
+
+
+        const getTodoListFromLocal = () => {
+            return JSON.parse(localStorage.getItem("youtubeTodoList"));
+        }
+
+        localTodoLists = getTodoListFromLocal() || [];
+
+        const addTodoDynamicElement = (curElem) => {
+            const divElement = document.createElement("div");
+            divElement.classList.add("main_todo_div");
+            divElement.innerHTML = `<li>${curElem}</li> <button class="deleteBtn">Delete</button>`;
+            mainTodoElem.appendChild(divElement);
+        }
+
+        const addTodoList = (e) => {
+            e.preventDefault();
+            console.log("Testing");
+
+
+            const todoListValue = inputValue.value.trim();
+
+            inputValue.value = "";
+            if(todoListValue !="" && !localTodoLists.includes(todoListValue))
+            {
+                localTodoLists.push(todoListValue);
+                localTodoLists = [...new Set(localTodoLists)];
+                console.log(localTodoLists);
+                localStorage.setItem("youtubeTodoList" , JSON.stringify(localTodoLists));
+
+                addTodoDynamicElement(todoListValue);
+            }
+        };
+
+        const showTodoList = () =>{
+            console.log(localTodoLists);
+            localTodoLists.forEach( (curElem)=> {
+                addTodoDynamicElement(curElem);
+            })
+        }
+        showTodoList();
+
+        document.querySelector('.btn').addEventListener('click', (e)=>{
+            addTodoList(e);
+        })
+    </script>
+</body>
+</html>
