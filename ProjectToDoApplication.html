@@ -112,6 +112,14 @@
         }
         showTodoList();
 
+        const removeTodoElement = (e) => {
+            console.log(e.target);
+        }
+        mainTodoElem.addEventListener('click' , (e) =>{
+            e.preventDefault();
+            removeTodoElement(e);
+        })
+
         document.querySelector('.btn').addEventListener('click', (e)=>{
             addTodoList(e);
         })
