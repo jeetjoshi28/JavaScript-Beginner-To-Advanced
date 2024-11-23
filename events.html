@@ -1,0 +1,41 @@
+<!-- 3 way to writeing the event in javascript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    <h1>inline event</h1>
+<button onclick="alert('inline event')">Click me</button>
+
+<button ondblclick="alert('Welcome In Double Click Event')">Double click Event</button>
+
+<button onmouseover="alert('Hover')">Hover</button>
+
+<!-- second way to write the event in javascript is dom event handler -->
+
+<h1>Dom Event handler</h1>
+<button id="mybtn">Click me</button>
+<button id="mybtn2">Click me</button>
+
+
+<script>
+    document.getElementById("mybtn").onclick = () => {alert('welcome')} ;
+
+    // second function to call the event is using addEventListener() method using normal function calling
+    // document.getElementById("mybtn").onclick = function() 
+    // {alert('welcome')};
+
+
+    // document.getElementById('mybtn2').addEventListener('click', function() {alert("Welcome");})
+
+    document.getElementById('mybtn2').addEventListener('click',
+    () => {alert("Welcome");})
+</script>
+</body>
+</html>
