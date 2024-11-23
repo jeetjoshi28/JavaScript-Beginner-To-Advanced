@@ -76,6 +76,10 @@
             return JSON.parse(localStorage.getItem("youtubeTodoList"));
         }
 
+        const addTodoListLocalStorage = (localTodoLists) => {
+            return localStorage.setItem("youtubeTodoList", JSON.stringify(localTodoLists));
+        };
+
         localTodoLists = getTodoListFromLocal() || [];
 
         const addTodoDynamicElement = (curElem) => {
@@ -113,7 +117,18 @@
         showTodoList();
 
         const removeTodoElement = (e) => {
-            console.log(e.target);
+            const todoToRemove = e.target;
+            let todoListContent = todoToRemove.previousElementSibling.innerText;
+            let parentElem = todoToRemove.parentElement;
+            console.log(todoListContent);
+           localTodoLists = localTodoLists.filter((curTodo) =>{
+                return curTodo !== todoListContent;
+            });
+
+            addTodoListLocalStorage(localTodoLists);
+            parentElem.remove();
+
+            console.log(localTodoLists)
         }
         mainTodoElem.addEventListener('click' , (e) =>{
             e.preventDefault();
