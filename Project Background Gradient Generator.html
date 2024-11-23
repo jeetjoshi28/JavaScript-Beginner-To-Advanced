@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendom Gradient Generator</title>
+    <style>
+        /* Apply the gradient background to the body */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Center and style the section */
+        section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style buttons */
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgb(92,145,229);
+            color: white;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(152,63,198);
+        }
+
+        /* Style the copyCode div */
+        .copyCode {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 2px solid white; 
+            border-radius: 5px;
+            font-family: monospace;
+            color: white;
+            display: inline-block;
+        }
+
+        /* Style the copied message */
+        .copied-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .copied-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <button id="mybtn">#051937</button>
+            <button id="mybtn2">#008793</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92,145,229), rgb(152,63,198))
+        </div>
+        <div class="copied-message" id="copiedMessage">Copied successfully!</div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("mybtn");
+        let btn2 = document.getElementById("mybtn2");
+        let copyDiv = document.querySelector(".copyCode");
+        let copiedMessage = document.getElementById("copiedMessage");
+        let rgb1 = "#004773";
+        let rgb2 = "#54d542";
+
+        const hexValues = () => {
+            let myHexValues = "0123456789abcdef";
+            let colors = "#";
+            for (let i = 0; i < 6; i++) {
+                colors = colors + myHexValues[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+        };
+
+        const handleButton1 = () => {
+            rgb1 = hexValues();
+            btn1.innerText = rgb1;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handleButton2 = () => {
+            rgb2 = hexValues();
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        copyDiv.addEventListener('click', () => {
+            navigator.clipboard.writeText(copyDiv.innerText).then(() => {
+                showCopiedMessage();
+            });
+        });
+
+        const showCopiedMessage = () => {
+            copiedMessage.classList.add("show");
+            setTimeout(() => {
+                copiedMessage.classList.remove("show");
+            }, 2000);
+        };
+
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+    </script>
+</body>
+</html>
