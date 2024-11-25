@@ -15,3 +15,19 @@ console.log(dateString);
 
 const date1 = new Date(2024, 1);
 console.log(date1);
+
+const curMilliSecinds = new Date().getTime();
+const milliseconds = 1632090690883;
+
+const dateFromMilliseconds = new Date(curMilliSecinds);
+console.log(dateFromMilliseconds);
+
+
+const date = new Date();
+const localDateString = date.toLocaleDateString();
+console.log(localDateString);
+
+
+const date3 = new Date();
+const localTime = date3.toLocaleTimeString();
+console.log(localTime);
