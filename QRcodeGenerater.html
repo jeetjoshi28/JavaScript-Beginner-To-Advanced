@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbf8fb, #5bb870);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 1.2em;
+            color: #34495e;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Input field styles */
+        input[type="text"] {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Button styles with animations */
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            background-color: #1c598a;
+            box-shadow: none;
+        }
+
+        /* QR code container styles with fade-in animation */
+        #qrcode {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #qrcode.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>QR Code Generator</h1>
+    <label for="data">Enter URL or Text:</label>
+    <input type="text" id="data" placeholder="Enter URL or text">
+    <br>
+    <button id="generate">Generate QR Code</button>
+    <br>
+    <div id="qrcode"></div>
+
+    <script>
+        document.getElementById('generate').addEventListener('click', () => {
+            const data = document.getElementById('data').value;
+            const qrCodeContainer = document.getElementById('qrcode');
+
+            // Clear previous QR codes
+            qrCodeContainer.innerHTML = "";
+            qrCodeContainer.classList.remove('active'); // Reset animation state
+
+            if (data) {
+                // Generate QR Code
+                QRCode.toCanvas(data, { width: 200 }, (error, canvas) => {
+                    if (error) {
+                        console.error(error);
+                        alert("Error generating QR code. Please try again.");
+                    } else {
+                        qrCodeContainer.appendChild(canvas); // Append the canvas to the div
+                        // Trigger fade-in animation
+                        setTimeout(() => {
+                            qrCodeContainer.classList.add('active');
+                        }, 100); // Slight delay to ensure animation triggers
+                    }
+                });
+            } else {
+                alert('Please enter some text or a URL!');
+            }
+        });
+    </script>
+</body>
+
+</html>

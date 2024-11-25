@@ -33,6 +33,3 @@ const localTime = date3.toLocaleTimeString();
 console.log(localTime);
 
 
-const date4 = new Date("2024-02-29");
-const newDate = addDaysToDate(date4, 7);
-console.log(newDate.toLocaleDateString());
