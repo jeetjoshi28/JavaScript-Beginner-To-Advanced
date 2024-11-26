@@ -33,3 +33,20 @@ const localTime = date3.toLocaleTimeString();
 console.log(localTime);
 
 
+// set timeout
+
+function delayedFunction() {
+    console.log("Hello, World!");
+}
+
+const myWork = setTimeout(delayedFunction, 2000);
+clearTimeout(myWork);
+//set interval
+
+function repeatedFunction() {
+    console.log("This function will be repeated every 1000 milliseconds");
+}
+
+setInterval(repeatedFunction, 1000);
+
+
