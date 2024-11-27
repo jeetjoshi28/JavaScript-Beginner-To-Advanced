@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2092/2092710.png" type="image/png">
+    <style>
+        body {
+            background-color: #2C3E50;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        section {
+            background-color: #34495E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 400px;
+        }
+
+        #countDown {
+            font-size: 5em;
+            color: #EC7063;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #5890FF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        button:hover {
+            background-color: #3498DB;
+        }
+
+        button i {
+            font-size: 1.2em;
+        }
+
+        .resetValue {
+            font-size: 1.2em;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <p id="countDown">0</p>
+        <div class="buttons">
+            <button class="start_btn"><i class="fas fa-play"></i> Start</button>
+            <button class="reset_btn"><i class="fas fa-sync-alt"></i> Reset</button>
+            <button class="stop_btn"><i class="fas fa-stop"></i> Stop</button>
+            <button class="time_btn"><i class="fas fa-clock"></i> Get Time</button>
+            <button class="clear_btn"><i class="fas fa-trash-alt"></i> Clear Time</button>
+        </div>
+        <div class="resetValue"></div>
+    </section>
+    <script>
+        const countDownElement = document.getElementById('countDown');
+        const resetValueElement = document.querySelector(".resetValue");
+        let startCount = 0;
+        let intervalId;
+
+        const startTimer = () => {
+            intervalId = setInterval(() => {
+                countDownElement.innerText = startCount++;
+            }, 1000);
+        };
+
+        const stopTimer = () => {
+            showStopValue();
+            clearInterval(intervalId);
+        };
+
+        const resetTimer = () => {
+            startCount = 0;
+            countDownElement.innerText = startCount;
+            clearInterval(intervalId);
+        };
+
+        const showStopValue = () => {
+            const newPara = document.createElement("p");
+            newPara.innerText = `The stop time is ${startCount - 1}`;
+            resetValueElement.appendChild(newPara);
+        };
+
+        const clearTimeValue = () => {
+            resetValueElement.innerHTML = "";
+        };
+
+        document.querySelector(".start_btn").addEventListener("click", startTimer);
+        document.querySelector(".reset_btn").addEventListener("click", resetTimer);
+        document.querySelector(".stop_btn").addEventListener("click", stopTimer);
+        document.querySelector(".time_btn").addEventListener("click", showStopValue);
+        document.querySelector(".clear_btn").addEventListener("click", clearTimeValue);
+    </script>
+</body>
+
+</html>
