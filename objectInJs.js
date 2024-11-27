@@ -58,7 +58,7 @@ person.greet()
 
 let idType = "collegeId"
 let student = {
-    [idType]: "A12345",
+    [idType]: "A12345", //dynamic key based on idType
     sName: "Jeet",
     sAge: 24,
     isStudent: true,
@@ -71,3 +71,21 @@ let student = {
 };
 
 student.greet();
+
+
+// Data moding in JavaScript
+// Objects are excellent for modeling real-world entities. for instance, you might represent a car, a user, or a product as an object with properities like color, brand, username, etc...
+
+let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2015,
+    color: "Blue",
+    start: function () {
+        console.log("Car started");
+    },
+};
+
+car.start();
+
+console.log(car);
