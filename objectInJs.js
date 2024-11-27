@@ -17,9 +17,17 @@ const product = {
 const person = {
     name: "jeet",
     age: 24,
-    isStudent: true,
+    "is'Student": true,
+
+    //method
     greet: function () {
         console.log("Welcome to the person object");
     },
 };
 
+// object ma function ne method keyau che.
+
+// you can access object property using dot notation or bracket notation.
+console.log(person.age);
+console.log(person.name)
+console.log(person["is'Student"])
