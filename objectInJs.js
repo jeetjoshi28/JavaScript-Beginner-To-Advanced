@@ -29,5 +29,45 @@ const person = {
 
 // you can access object property using dot notation or bracket notation.
 console.log(person.age);
-console.log(person.name)
-console.log(person["is'Student"])
+console.log(person.name);
+
+//in place of . we can use the [] bracket
+console.log(person["name"]);
+console.log(person[`name`]);
+console.log(person['name']);
+
+
+console.log(person["is'Student"]);
+
+// you can add and new properties or modify existing ones
+person.job = "MERN Developer";
+person.age = 25;
+
+// we can use [] in place of . notation
+// person[`age`] = 20;
+// person["age"] = 20;
+// person['age'] = 20;
+
+console.log(person)
+
+// How to access the method of inside of object
+
+person.greet()
+
+// we can add dynamic keys in an object
+
+let idType = "collegeId"
+let student = {
+    [idType]: "A12345",
+    sName: "Jeet",
+    sAge: 24,
+    isStudent: true,
+    greet: function () {
+        console.log
+            (
+                `Hey, my ${idType} is ${student[idType]} and my name is ${student.sName}.`
+            );
+    },
+};
+
+student.greet();
