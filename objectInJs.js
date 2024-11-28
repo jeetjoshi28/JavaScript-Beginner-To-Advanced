@@ -89,3 +89,24 @@ let car = {
 car.start();
 
 console.log(car);
+
+//pass by value
+//In pass by value we can just pass the value of the variable to the function and the function can't change the original variable
+
+let a = 10;
+const modifyValue = (x) => (x = 20);
+
+console.log(modifyValue(a));
+
+console.log(a);
+
+
+// passing by reference: when passing by reference, a reference to the memory location of the object is passed to the function or assigned to a variable. Any changes made to the object through this reference will affect the original object.
+
+let obj = { id: 5, name: "Jeet" };
+
+let obj1 = obj;
+
+obj1.name = "Joshi";
+console.log(obj1)
+console.log(obj);
