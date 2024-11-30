@@ -110,3 +110,44 @@ let obj1 = obj;
 obj1.name = "Joshi";
 console.log(obj1)
 console.log(obj);
+
+
+// Interview Questions
+
+const target = { A: 1, b: 2 };
+const source = { b: 3, c: 4 };
+
+const mergeObject = Object.assign({}, target, source);
+console.log(mergeObject);
+
+
+//Problem: Given an object representing a student, write a function to add a new subject with it's corresponding grade to the student record. Also check if the grades property is present or not?
+
+function addSubject(student, subject, grade) {
+    // Check if 'grades' property exists
+    if (!student.grades) {
+        // If 'grades' is not present, create it as an empty object
+        student.grades = {};
+    }
+
+    // Add the new subject and grade
+    student.grades[subject] = grade;
+
+    console.log(`${subject} added with grade ${grade}.`);
+    return student;
+}
+
+// Example usage
+let studentData = {
+    name: "Bob",
+    age: 20,
+    grades: {
+        math: 90,
+        science: 85,
+        history: 88,
+    },
+};
+
+addSubject(studentData, "computer", 92);
+console.log(studentData);
+
