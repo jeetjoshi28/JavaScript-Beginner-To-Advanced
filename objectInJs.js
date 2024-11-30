@@ -151,3 +151,17 @@ let studentData = {
 addSubject(studentData, "computer", 92);
 console.log(studentData);
 
+//Problem: Write a function to compares two object to determine if they have the same properties and values.
+
+const areObjectEqual = (obj1, obj2) => {
+    if (obj1.length != obj2.length)
+        return false
+};
+let objA = { name: "Alice", age: 26, city: "New Yourk" };
+let objB = { name: "Alice", age: 25, city: "New Yourk" };
+let objC = { name: "Bob", age: 30, city: "San Francisco" };
+
+
+console.log(areObjectEqual(objA, objB));
+console.log(areObjectEqual(objA, objC));
+
