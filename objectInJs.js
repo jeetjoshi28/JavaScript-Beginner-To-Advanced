@@ -151,17 +151,47 @@ let studentData = {
 addSubject(studentData, "computer", 92);
 console.log(studentData);
 
-//Problem: Write a function to compares two object to determine if they have the same properties and values.
+// Problem: Write a function to compares two object to determine if they have the same properties and values.
 
 const areObjectEqual = (obj1, obj2) => {
-    if (obj1.length != obj2.length)
-        return false
+
+    let o1 = Object.keys(obj1);
+    let o2 = Object.keys(obj2);
+
+    if (o1.length != o2.length) {
+        console.log("There keys are not equal");
+        return false;
+    }
+
+    for (let key in obj1) {
+        if (obj1[key] !== obj2[key]) {
+            return false;
+        }
+    }
+    return true;
 };
 let objA = { name: "Alice", age: 26, city: "New Yourk" };
-let objB = { name: "Alice", age: 25, city: "New Yourk" };
+let objB = { name: "Alice", age: 26, city: "New Yourk" };
 let objC = { name: "Bob", age: 30, city: "San Francisco" };
 
 
 console.log(areObjectEqual(objA, objB));
 console.log(areObjectEqual(objA, objC));
 
+
+
+//Problem: Erite a function that transform an array of an objects into an object where the keys are the objects id.
+
+function arrayToObject(array) {
+    return array.reduce((result, item) => {
+        result[item.id] = item; // Use the 'id' as the key
+        return result;
+    }, {}); // Initialize an empty object as the accumulator
+}
+
+let inputArray = [
+    { id: 1, name: "John" },
+    { id: 2, name: "Jane" },
+    { id: 3, name: "Bob" },
+];
+console.log(arrayToObject(inputArray));
