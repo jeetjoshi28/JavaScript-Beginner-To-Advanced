@@ -1,0 +1,76 @@
+<!-- // Event Propagation
+// Event propagation refers to the process of how events propagate or travel through the DOM hierarchy
+
+// In javascript, there are two phases of event proparagation : capturing and bubbling -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mainBody {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mainBody div {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+            background-color: lightblue;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Event Delegation - Periodic Table</h1>
+    <section class="mainBody"></section>
+    <script>
+        function initializePeriodicTable() {
+            const mainBody = document.querySelector(".mainBody");
+
+            // Create 50 periodic table elements
+            for (let i = 1; i <= 50; i++) {
+                const element = document.createElement("div");
+                element.innerText = i;
+                mainBody.append(element);
+            }
+
+            mainBody.addEventListener('click', (e) => {
+                alert(e.target.innerText);
+            });
+        }
+
+        initializePeriodicTable();
+    </script>
+</body>
+
+</html>
