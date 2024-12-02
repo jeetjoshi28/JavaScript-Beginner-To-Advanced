@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dad Jokes!</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f8b400, #f06292);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        /* Heading styling */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        /* Section styling for jokes */
+        .api_body {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: #555;
+            min-height: 60px;
+            /* To ensure space for jokes even if none are fetched */
+        }
+
+        /* Button styling */
+        button {
+            background: #f06292;
+            color: white;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #e91e63;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Dad Jokes!</h1>
+        <section class="api_body"></section>
+        <button id="fetchJoke">Get Another Joke</button>
+    </div>
+
+    <script>
+        const apiBody = document.querySelector(".api_body");
+
+        const apiUrl = "https://icanhazdadjoke.com/";
+
+        const fetchData = () => {
+            fetch(apiUrl, {
+                headers: {
+                    "Accept": "application/json",
+                },
+            })
+                .then((res) => {
+                    console.log(res);
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data.joke);
+                    apiBody.innerHTML = data.joke;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+
+        fetchData();
+        document.getElementById("fetchJoke").addEventListener("click", fetchData);
+    </script>
+</body>
+
+</html>
